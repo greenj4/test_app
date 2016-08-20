@@ -29,6 +29,7 @@ class JobQuotesController < ApplicationController
   # POST /job_quotes.json
   def create
     @job_quote = JobQuote.new(job_quote_params)
+    @job_quote.user = current_user
 
     respond_to do |format|
       if @job_quote.save
