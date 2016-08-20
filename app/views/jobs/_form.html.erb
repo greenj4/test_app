@@ -1,17 +1,46 @@
-<%= simple_form_for(@job) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :location %>
-    <%= f.input :svctype %>
-    <%= f.input :class %>
-    <%= f.input :job_date %>
-    <%= f.input :due_date %>
-    <%= f.association :user %>
+<%= form_for @job, :html => { :class => 'form-horizontal form-model' } do |f| %>
+  <div class="form-group">
+    <%= f.label :name, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :name, :class => 'text-field form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :location, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :location, :class => 'text-field form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :svctype, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :svctype, :class => 'text-field form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :class, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :class, :class => 'text-field form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :job_date, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.date_select :job_date, :class => 'text-field form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :due_date, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.date_select :due_date, :class => 'text-field form-control' %>
+    </div>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
+  <div class="form-group">
+    <div class='col-md-offset-2 col-md-10'>
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                  jobs_path, :class => 'btn btn-default' %>
+    </div>
   </div>
 <% end %>

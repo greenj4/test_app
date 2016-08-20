@@ -1,39 +1,34 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Job -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => Job %></h1>
+</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @job.name %>
-</p>
+<div class="fieldset">
+  <dl>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:name) %></dt>
+      <dd><pre class="prettyprint"><%= @job.name %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:location) %></dt>
+      <dd><pre class="prettyprint"><%= @job.location %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:svctype) %></dt>
+      <dd><pre class="prettyprint"><%= @job.svctype %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:class) %></dt>
+      <dd><pre class="prettyprint"><%= @job.class %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:job_date) %></dt>
+      <dd><pre class="prettyprint"><%= @job.job_date %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:due_date) %></dt>
+      <dd><pre class="prettyprint"><%= @job.due_date %></pre></dd>
+  </dl>
+</div>
 
-<p>
-  <strong>Location:</strong>
-  <%= @job.location %>
-</p>
+<div class="form-group">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              jobs_path, :class => 'btn btn-default'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_job_path(@job), :class => 'btn btn-default' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              job_path(@job),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>
 
-<p>
-  <strong>Svctype:</strong>
-  <%= @job.svctype %>
-</p>
-
-<p>
-  <strong>Class:</strong>
-  <%= @job.class %>
-</p>
-
-<p>
-  <strong>Job date:</strong>
-  <%= @job.job_date %>
-</p>
-
-<p>
-  <strong>Due date:</strong>
-  <%= @job.due_date %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @job.user %>
-</p>
-
-<%= link_to 'Edit', edit_job_path(@job) %> |
-<%= link_to 'Back', jobs_path %>
