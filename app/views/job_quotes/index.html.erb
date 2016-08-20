@@ -1,29 +1,36 @@
-<h1>Listing job_quotes</h1>
-
-<table>
+<%- model_class = JobQuote -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => JobQuote %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Job</th>
-      <th>User</th>
-      <th>Price</th>
-      <th colspan="3"></th>
+      <th>ID</th>
+      <th><%= model_class.human_attribute_name(:price) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @job_quotes.each do |job_quote| %>
       <tr>
-        <td><%= job_quote.job %></td>
-        <td><%= job_quote.user %></td>
+        <td><%= job_quote.id %></td>
         <td><%= job_quote.price %></td>
-        <td><%= link_to 'Show', job_quote %></td>
-        <td><%= link_to 'Edit', edit_job_quote_path(job_quote) %></td>
-        <td><%= link_to 'Destroy', job_quote, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%=l job_quote.created_at, format: :long %></td>
+        <td>
+          <%= link_to job_quote_path(job_quote), :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" do %>
+            <%= glyph 'info-sign' %>
+            <%= glyph 'pencil' %>
+          <%- end -%>
+          <%= link_to job_quote_path(job_quote), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs', :title => "#{ t('.destroy', :default => t('helpers.links.destroy')) }" do %>
+            <%= glyph 'remove' %>
+          <%- end -%>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Job quote', new_job_quote_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_job_quote_path,
+            :class => 'btn btn-primary' %>
