@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Job:</strong>
+  <%= @job_quote.job %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @job_quote.user %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @job_quote.price %>
+</p>
+
+<%= link_to 'Edit', edit_job_quote_path(@job_quote) %> |
+<%= link_to 'Back', job_quotes_path %>
